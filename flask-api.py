@@ -134,7 +134,6 @@ def api_status():
 
 @app.route("/api/v1/gpio/<pin_number>/", methods=['POST', 'GET'])
 @crossdomain(origin='*')
-@login_required
 def gpio_pin(pin_number):
     pin_number = int(pin_number)
     if request.method == 'GET':
