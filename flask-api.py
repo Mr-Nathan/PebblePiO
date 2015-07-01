@@ -119,6 +119,25 @@ def pin_update(pin_number, value):
                 'error': 'Invalid pin number or value.'}
 
     return data
+    
+    
+def pin_toggle(pin_number):
+    if pin_number in VALID_BCM_PIN_NUMBERS:
+        if GPIO.input(pin_number) == 0:
+            GPIO.output(pin_number, 1)
+        else:
+            GPIO.output(pin_number, 0)
+        new_value = GPIO.input(pin_number)
+        data = {'status': 'SUCCESS',
+                'error': None,
+                'pin_number': pin_number,
+                'pin_name': PIN_NAMES[str(pin_number)],
+                'new_value': new_value}
+    else:
+        data = {'status': 'ERROR',
+                'error': 'Invalid pin number or value.'}
+
+    return data
 
 
 @app.route("/api/v1/ping/", methods=['GET'])
@@ -151,6 +170,14 @@ def gpio_pin(pin_number):
     return jsonify(data)
 
 
+@app.route("/api/v1/gpio/<pin_number>/toggle/", methods=['GET'])
+@crossdomain(origin='*')
+def gpio_pin(pin_number):
+    pin_number = int(pin_number)
+    data = pin_toggle(pin_number)
+    return jsonify(data)
+    
+    
 @app.route("/api/v1/gpio/status/", methods=['GET'])
 @crossdomain(origin='*')
 def gpio_status():
