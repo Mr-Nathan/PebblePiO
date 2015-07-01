@@ -85,6 +85,27 @@ Example POST response:
 ```
 
 
+**/api/v1/gpio/<pin_number>/toggle/**
+
+* Supported Methods - GET
+* GET - Toggles the state of selected GPIO.
+* POST - Not supported.
+
+Example GET response:
+```
+{
+{
+  "error": null, 
+  "new_value": 1, 
+  "pin_name": "IN1", 
+  "pin_number": 17, 
+  "status": "SUCCESS"
+}
+    ]
+}
+```
+
+
 **/api/v1/gpio/status/**
 
 * Supported Methods - GET
