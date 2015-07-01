@@ -89,7 +89,7 @@ Example POST response:
 **/api/v1/gpio/\<pin_number\>/toggle/**
 
 * Supported Methods - GET
-* GET - Toggles the state of selected GPIO.
+* GET - Toggles the state of specified GPIO BCM pin number.
 * POST - Not supported.
 
 Example GET response:
