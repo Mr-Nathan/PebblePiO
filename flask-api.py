@@ -172,9 +172,10 @@ def gpio_pin(pin_number):
 
 @app.route("/api/v1/gpio/<pin_number>/toggle/", methods=['GET'])
 @crossdomain(origin='*')
-pin_number = int(pin_number)
-data = pin_toggle(pin_number)
-return jsonify(data)
+def gpio_toggle():
+    pin_number = int(pin_number)
+    data = pin_toggle(pin_number)
+    return jsonify(data)
     
     
 @app.route("/api/v1/gpio/status/", methods=['GET'])
